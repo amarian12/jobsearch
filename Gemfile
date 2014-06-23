@@ -28,6 +28,15 @@ gem 'spring',        group: :development
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'pry'
+end
+
+group :development do
+  gem 'annotate'
+end
+
+group :test do
+  gem 'factory_girl_rails'
 end
 
 gem "twitter-bootstrap-rails"

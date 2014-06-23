@@ -1,5 +1,20 @@
+# == Schema Information
+#
+# Table name: applicants
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  surname    :string(255)
+#  patronymic :string(255)
+#  status     :string(255)
+#  salary     :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 
-RSpec.describe Applicant, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Applicant do
+
+
 end

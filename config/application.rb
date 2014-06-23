@@ -6,6 +6,11 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# application config initialization ../config/application.yml
+CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
+CONFIG.merge! CONFIG.fetch(Rails.env, {})
+CONFIG.symbolize_keys!
+
 module Jobsearch
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

@@ -1,0 +1,8 @@
+development:
+  default_vacancy_validity: 30
+
+test:
+  default_vacancy_validity: 30
+
+production:
+  default_vacancy_validity: 30
