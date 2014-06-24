@@ -21,6 +21,11 @@
 = link_to 'Back', applicants_path
 
 %p
-  - @vacancies.each do |vacancy|
-    = vacancy.name
-    = vacancy.salary
+  - if @vacancies.present?
+    - @vacancies.each do |vacancy|
+      = vacancy.name
+      = vacancy.salary
+
+  - if @applicant.skills
+    - @applicant.skills.each do |skill|
+      = skill.name

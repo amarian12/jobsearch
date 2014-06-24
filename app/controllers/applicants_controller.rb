@@ -1,5 +1,6 @@
 class ApplicantsController < ApplicationController
   before_action :set_applicant, only: [:show, :edit, :update, :destroy]
+  autocomplete :skill, :name
 
   # GET /applicants
   # GET /applicants.json
@@ -10,7 +11,7 @@ class ApplicantsController < ApplicationController
   # GET /applicants/1
   # GET /applicants/1.json
   def show
-    @vacancies = Vacancy.for_applicant
+    @vacancies = Vacancy.for_applicant(@applicant.skills)
   end
 
   # GET /applicants/new
@@ -70,6 +71,6 @@ class ApplicantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def applicant_params
-      params.require(:applicant).permit(:name, :surname, :patronymic, :status, :salary)
+      params.require(:applicant).permit(:name, :surname, :patronymic, :status, :salary, skills_attributes: [:id, :name])
     end
 end

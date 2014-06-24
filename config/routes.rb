@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  resources :applicants
+  resources :applicants do
+    get :autocomplete_skill_name, :on => :collection
+  end
 
-  resources :vacancies
+  resources :vacancies do
+    get :autocomplete_skill_name, :on => :collection
+  end
+
+  #post 'skills/:id' => 'skills#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

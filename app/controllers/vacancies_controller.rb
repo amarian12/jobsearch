@@ -1,5 +1,6 @@
 class VacanciesController < ApplicationController
   before_action :set_vacancy, only: [:show, :edit, :update, :destroy]
+  autocomplete :skill, :name
 
   # GET /vacancies
   # GET /vacancies.json
@@ -19,13 +20,13 @@ class VacanciesController < ApplicationController
 
   # GET /vacancies/1/edit
   def edit
+    @skills = Skill.all
   end
 
   # POST /vacancies
   # POST /vacancies.json
   def create
     @vacancy = Vacancy.new(vacancy_params)
-
     respond_to do |format|
       if @vacancy.save
         format.html { redirect_to @vacancy, notice: 'Vacancy was successfully created.' }
@@ -69,6 +70,6 @@ class VacanciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vacancy_params
-      params.require(:vacancy).permit(:name, :validity, :salary)
+      params.require(:vacancy).permit(:name, :validity, :salary, skills_attributes: [:id, :name])
     end
 end

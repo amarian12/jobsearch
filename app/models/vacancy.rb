@@ -12,10 +12,12 @@
 #
 
 class Vacancy < ActiveRecord::Base
+  include Skillable
   after_create :set_expire_date
 
-  def self.for_applicant
-    where("expire_date > ?", Date.today).order("salary DESC")
+  def self.for_applicant(applicant_skills)
+    joins(:skills).where("skills.id in (?)", applicant_skills.pluck(:id)).
+    where("expire_date > ?", Date.today).order("salary DESC").distinct
   end
 
   private

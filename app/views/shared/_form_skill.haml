@@ -1,0 +1,5 @@
+= f.fields_for :skills, ob.skills.build, remote: true do |s|
+  = s.autocomplete_field :name, autocomplete_skill_name_vacancies_path
+  = s.submit
+
+

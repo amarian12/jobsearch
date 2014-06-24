@@ -23,3 +23,5 @@
     = f.number_field :salary
   .actions
     = f.submit 'Save'
+
+  = render 'shared/form_skill', f: f, ob: @applicant
