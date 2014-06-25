@@ -15,6 +15,7 @@ require 'rails_helper'
 
 describe Vacancy do
   let (:vacancy) { create :vacancy }
+  let (:applicant) { create :applicant }
 
   describe "#set_expire_date" do
     it "should set validity to default value if it's not present" do
@@ -23,8 +24,9 @@ describe Vacancy do
   end
 
   describe "#for_applicant" do
+    let (:expired_vacancy) { create :vacancy, :expired }
     it "should show only active vacancies" do
-      Vacancy.all.should_not include(expired_vacancy)
+      Vacancy.for_applicant(applicant.skills).should_not include(expired_vacancy)
     end
   end
 

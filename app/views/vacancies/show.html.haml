@@ -13,3 +13,20 @@
 = link_to 'Edit', edit_vacancy_path(@vacancy)
 \|
 = link_to 'Back', vacancies_path
+
+%h3
+  Навыки
+
+- if @vacancy.skills
+  - @vacancy.skills.each do |skill|
+    = skill.name
+
+%p
+  %h3
+    Подходящие кандидаты
+
+  - if @applicants.present?
+    - @applicants.each do |applicant|
+      %li
+        = link_to applicant.fullname, applicant_path(applicant)
+        = applicant.salary

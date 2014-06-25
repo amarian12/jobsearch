@@ -20,4 +20,16 @@ class Applicant < ActiveRecord::Base
   validates :name, presence: true, format: { with: fio_regexp }
   validates :surname, presence: true, format: { with: fio_regexp }
   validates :patronymic, presence: true, format: { with: fio_regexp }
+
+  def self.for_vacancy(vacancy_skills)
+    query = self
+    if vacancy_skills.present?
+      query = query.joins(:skills).where("skills.id in (?)", vacancy_skills.pluck(:id))
+    end
+    query.where("status = ?", "active").order("salary DESC").distinct
+  end
+
+  def fullname
+    "#{surname} #{name} #{patronymic}"
+  end
 end

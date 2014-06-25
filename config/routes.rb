@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get :autocomplete_skill_name, :on => :collection
   end
 
+  root "welcome#index"
+
   #post 'skills/:id' => 'skills#create'
 
   # The priority is based upon order of creation: first created -> highest priority.

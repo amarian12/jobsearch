@@ -8,7 +8,8 @@
 #  updated_at :datetime
 #
 
-require 'rails_helper'
+FactoryGirl.define do
+  factory :skill do
 
-describe Skill do
+  end
 end

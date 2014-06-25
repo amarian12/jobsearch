@@ -16,8 +16,11 @@ class Vacancy < ActiveRecord::Base
   after_create :set_expire_date
 
   def self.for_applicant(applicant_skills)
-    joins(:skills).where("skills.id in (?)", applicant_skills.pluck(:id)).
-    where("expire_date > ?", Date.today).order("salary DESC").distinct
+    query = self
+    if applicant_skills.present?
+      query = query.joins(:skills).where("skills.id in (?)", applicant_skills.pluck(:id))
+    end
+    query.where("expire_date > ?", Date.today).order("salary ASC").distinct
   end
 
   private

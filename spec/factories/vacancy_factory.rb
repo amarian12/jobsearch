@@ -14,5 +14,13 @@
 FactoryGirl.define do
   factory :vacancy do
     name "Vacancy1"
+    validity CONFIG[:default_vacancy_validity]
+
+    trait :expired do
+      after(:create) do |vacancy|
+        vacancy.expire_date = DateTime.now - 1.day
+        vacancy.save
+      end
+    end
   end
 end
