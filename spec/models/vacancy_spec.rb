@@ -25,7 +25,11 @@ describe Vacancy do
 
   describe "#for_applicant" do
     let (:expired_vacancy) { create :vacancy, :expired }
-    it "should show only active vacancies" do
+    it "should include active vacancies" do
+      Vacancy.for_applicant(applicant.skills).should include(vacancy)
+    end
+
+    it "should not include inactive vacancies" do
       Vacancy.for_applicant(applicant.skills).should_not include(expired_vacancy)
     end
   end

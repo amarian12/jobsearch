@@ -15,6 +15,19 @@
 require 'rails_helper'
 
 describe Applicant do
+  let(:applicant) { create :applicant }
+  let(:vacancy) { create :vacancy }
 
+  describe "#for_vacancy" do
+    let(:inactive_applicant) { create :applicant, :inactive }
+
+    it "should include active applicants" do
+      Applicant.for_vacancy(vacancy.skills).should include(applicant)
+    end
+
+    it "should not include inactive applicants" do
+      Applicant.for_vacancy(vacancy.skills).should_not include(inactive_applicant)
+    end
+  end
 
 end

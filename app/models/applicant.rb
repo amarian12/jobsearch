@@ -17,9 +17,14 @@ class Applicant < ActiveRecord::Base
   include Skillable
   fio_regexp = /\A[а-яё ]+/i
 
+  def self.statuses
+    ['active', 'inactive']
+  end
+
   validates :name, presence: true, format: { with: fio_regexp }
   validates :surname, presence: true, format: { with: fio_regexp }
   validates :patronymic, presence: true, format: { with: fio_regexp }
+  validates :status, inclusion: { in: self.statuses, message: "%{value} is not valid" }
 
   def self.for_vacancy(vacancy_skills)
     query = self
@@ -32,4 +37,5 @@ class Applicant < ActiveRecord::Base
   def fullname
     "#{surname} #{name} #{patronymic}"
   end
+
 end

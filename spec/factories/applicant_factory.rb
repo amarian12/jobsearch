@@ -17,5 +17,10 @@ FactoryGirl.define do
     name Faker::Name.male_first_name
     surname Faker::Name.male_last_name
     patronymic Faker::Name.male_middle_name
+    status "active"
+
+    trait :inactive do
+      status "inactive"
+    end
   end
 end
