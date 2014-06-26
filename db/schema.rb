@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623145114) do
+ActiveRecord::Schema.define(version: 20140625062120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20140623145114) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "contacts", force: true do |t|
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["contactable_id", "contactable_type"], name: "index_contacts_on_contactable_id_and_contactable_type", using: :btree
 
   create_table "skill_assignments", force: true do |t|
     t.integer  "skillable_id"

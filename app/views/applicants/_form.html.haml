@@ -21,6 +21,9 @@
   .field
     = f.label :salary
     = f.number_field :salary
+
+  = render 'shared/form_contact', f: f
+
   .actions
     = f.submit 'Save'
 

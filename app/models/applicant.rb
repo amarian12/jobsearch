@@ -15,6 +15,9 @@
 
 class Applicant < ActiveRecord::Base
   include Skillable
+  has_one :contact, as: :contactable
+  accepts_nested_attributes_for :contact
+
   fio_regexp = /\A[а-яё ]+/i
 
   def self.statuses

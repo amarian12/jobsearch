@@ -13,6 +13,9 @@
 
 class Vacancy < ActiveRecord::Base
   include Skillable
+  has_one :contact, as: :contactable
+  accepts_nested_attributes_for :contact
+
   after_create :set_expire_date
 
   def self.for_applicant(applicant_skills)

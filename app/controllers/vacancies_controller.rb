@@ -21,7 +21,7 @@ class VacanciesController < ApplicationController
 
   # GET /vacancies/1/edit
   def edit
-    @skills = Skill.all
+    @vacancy.contact ||= @vacancy.build_contact
   end
 
   # POST /vacancies
@@ -71,6 +71,6 @@ class VacanciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vacancy_params
-      params.require(:vacancy).permit(:name, :validity, :salary, skills_attributes: [:id, :name])
+      params.require(:vacancy).permit(:name, :validity, :salary, skills_attributes: [:id, :name], contact_attributes: [:id, :email, :phone])
     end
 end
