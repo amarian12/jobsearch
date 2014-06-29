@@ -10,6 +10,16 @@
   %b Salary:
   = @vacancy.salary
 
+- if @vacancy.contact.email.present?
+  %p
+    %b Email:
+    = @vacancy.contact.email
+
+- if @vacancy.contact.phone.present?
+  %p
+    %b Phone:
+    = @vacancy.contact.phone
+
 = link_to 'Edit', edit_vacancy_path(@vacancy)
 \|
 = link_to 'Back', vacancies_path

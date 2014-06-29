@@ -16,6 +16,17 @@
   %b Salary:
   = @applicant.salary
 
+- if @applicant.contact.email.present?
+  %p
+    %b Email:
+    = @applicant.contact.email
+
+- if @applicant.contact.phone.present?
+  %p
+    %b Phone:
+    = @applicant.contact.phone
+
+
 = link_to 'Edit', edit_applicant_path(@applicant)
 \|
 = link_to 'Back', applicants_path
